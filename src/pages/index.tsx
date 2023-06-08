@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 const BASE_URL = 'http://localhost:3000/api'
 
-export default function Home() {
+export default function Home() {  
   const router = useRouter()
   const [questao, setQuestao] = useState<QuestaoModel>() 
   const [idsDasQuestoes, setIdsDasQuestoes] = useState<number[]>([])
@@ -38,8 +38,10 @@ export default function Home() {
   }
 
   function idProximaPergunta(){
-      const proximoId = idsDasQuestoes.indexOf(questao.id) + 1
-      return idsDasQuestoes[proximoId]    
+      if(questao){
+        const proximoId = idsDasQuestoes.indexOf(questao.id) + 1
+        return idsDasQuestoes[proximoId]
+      }    
   }
   function proximoPasso(){
     const proximoId = idProximaPergunta()
